@@ -1,3 +1,4 @@
+#Kevin Yang K.Y, Christopher Noce C.N, Kevin Huang K.H
 import pygame
 
 pygame.init()
