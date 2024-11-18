@@ -122,10 +122,13 @@ def main():
 	running = True #K.Y: Initializing the running variable so that the while loop runs
 
 	# Defining the objects
-	geek1 = Striker(20, 0, 10, 100, 10, GREEN)
+    #K.Y: x, y, width, height, speed, colour
+	geek1 = Striker(20, 0, 10, 100, 10, GREEN) 
 	geek2 = Striker(WIDTH-30, 0, 10, 100, 10, GREEN)
+    #K.Y: x, y, radius, speed, colour
 	ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
 
+    #K.Y: List of the players?
 	listOfGeeks = [geek1, geek2]
 
 	# Initial parameters of the players
@@ -133,12 +136,12 @@ def main():
 	geek1YFac, geek2YFac = 0, 0
 
 	while running:
-		screen.fill(BLACK)
+		screen.fill(BLACK) #K.Y: sets game background colour
 
 		# Event handling
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
-				running = False #K.Y: Exits the while loop/game
+				running = False #K.Y: Exits the while loop/game ?when game window is closed?
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_UP:
 					geek2YFac = -1
@@ -191,7 +194,7 @@ def main():
 						geek2Score, WIDTH-100, 20, WHITE)
 
 		pygame.display.update()
-		clock.tick(FPS)	 
+		clock.tick(FPS)	
 
 
 if __name__ == "__main__":
