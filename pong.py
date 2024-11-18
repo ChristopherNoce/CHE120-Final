@@ -119,7 +119,7 @@ class Ball:
 
 
 def main():
-	running = True
+	running = True #K.Y: Initializing the running variable so that the while loop runs
 
 	# Defining the objects
 	geek1 = Striker(20, 0, 10, 100, 10, GREEN)
@@ -138,7 +138,7 @@ def main():
 		# Event handling
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
-				running = False
+				running = False #K.Y: Exits the while loop/game
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_UP:
 					geek2YFac = -1
@@ -175,11 +175,12 @@ def main():
 		# Someone has scored
 		# a point and the ball is out of bounds.
 		# So, we reset it's position
-		if point: 
-			ball.reset()
+		if point:
+            #K.Y: Calls upon the reset method in the ball class to set ball position to center of screen
+			ball.reset() 
 
 		# Displaying the objects on the screen
-		geek1.display()
+		geek1.display() 
 		geek2.display()
 		ball.display()
 
