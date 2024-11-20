@@ -1,23 +1,23 @@
 #Kevin Yang K.Y, Christopher Noce C.N, Kevin Huang K.H
-import pygame
+import pygame #C.N - imports the pygame module. The features on pygame are what make this game playable/possible. Just regular python does not have these capabilities.
 
-pygame.init()
+pygame.init() #C.N - this initializes the pygame modules, including font, sounds, and display. 
 
 # Font that is used to render the text
-font20 = pygame.font.Font('freesansbold.ttf', 20)
+font20 = pygame.font.Font('freesansbold.ttf', 20) #C.N - this sets the font and style that will be used for the text in the game
 
 # RGB values of standard colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
+BLACK = (0, 0, 0) #CN RBG value for black
+WHITE = (255, 255, 255) #CN RGB vakue for white 
+GREEN = (0, 255, 0) #CN RGB value that creates the green in game
 
 # Basic parameters of the screen
-WIDTH, HEIGHT = 900, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Pong")
+WIDTH, HEIGHT = 900, 600 #CN dimensions of the game window
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) #CN Creates the game window using the dimensions listed abvoe
+pygame.display.set_caption("Pong") #CN title of window = "Pong"
 
-clock = pygame.time.Clock() 
-FPS = 30
+clock = pygame.time.Clock() #CN creates clock object to control the frame rate
+FPS = 30 #CN sets the frames per second (FPS) - 30 frames per second means there are 30 still images (frames) displayed in a single second of animation. Higher fps = smoother and more fluid animations.
 
 # Striker class
 
