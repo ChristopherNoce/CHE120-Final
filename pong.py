@@ -118,53 +118,63 @@ class Ball: #K.H A new class "Ball" is being defined.
 
 
 def main():
-	running = True #K.Y: Initializing the running variable so that the while loop runs
+	running = True #K.Y: Initializing the running variable to True so that the while loop below runs
 
 	# Defining the objects
-    #K.Y: x, y, width, height, speed, colour
+    	#K.Y: x, y, width, height, speed, colour
 	geek1 = Striker(20, 0, 10, 100, 10, GREEN) 
 	geek2 = Striker(WIDTH-30, 0, 10, 100, 10, GREEN)
-    #K.Y: x, y, radius, speed, colour
+    	#K.Y: x, y, radius, speed, colour
 	ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
 
-    #K.Y: List of the players?
+    	#K.Y: List of the players
 	listOfGeeks = [geek1, geek2]
 
 	# Initial parameters of the players
 	geek1Score, geek2Score = 0, 0
-	geek1YFac, geek2YFac = 0, 0
+	geek1YFac, geek2YFac = 0, 0 #K.Y: YFac is explained in the following comments
 
-	while running:
+	while running: #K.Y: While the game is running/tab is open
 		screen.fill(BLACK) #K.Y: sets game background colour
 
 		# Event handling
-		for event in pygame.event.get():
+	        #K.Y: pygame.event.get() creates a list of events (mouse movements, keyboard inputs, etc)
+	        #K.Y: YFac is used to update the position of the strikers
+	        #K.Y: Top of the screen is y = 0, bottom is y = 600
+	        #K.Y: Position is updated by adding speed*YFac to the current position
+	        #K.Y: Negative YFac moves the striker up, positive YFac moves the striker down
+		for event in pygame.event.get(): #K.Y: checks each event in the list
 			if event.type == pygame.QUIT:
-				running = False #K.Y: Exits the while loop/game ?when game window is closed?
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_UP:
-					geek2YFac = -1
-				if event.key == pygame.K_DOWN:
-					geek2YFac = 1
+				running = False #K.Y: Exits the while loop/game when game window is closed
+			if event.type == pygame.KEYDOWN: #K.Y: When the key is pressed down
+    				#K.Y: the following 2 if statements set geek2YFac to -1 (up arrow) or 1 (down arrow)
+				if event.key == pygame.K_UP: 
+					geek2YFac = -1 
+				if event.key == pygame.K_DOWN: 
+					geek2YFac = 1 
+                		#K.Y: the following 2 if statements set geek1YFac to -1 (w key) or 1 (s key)
 				if event.key == pygame.K_w:
 					geek1YFac = -1
-				if event.key == pygame.K_s:
+				if event.key == pygame.K_s: 
 					geek1YFac = 1
-			if event.type == pygame.KEYUP:
-				if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+			if event.type == pygame.KEYUP: #K.Y: When the respective keys are released the YFac of geek1/2 is set to 0 meaning the striker's position will not change
+				if event.key == pygame.K_UP or event.key == pygame.K_DOWN: #K.Y: If up arrow or down arrow is released
 					geek2YFac = 0
-				if event.key == pygame.K_w or event.key == pygame.K_s:
+				if event.key == pygame.K_w or event.key == pygame.K_s: #K.Y: If 'w' or 's' key is released
 					geek1YFac = 0
 
 		# Collision detection
+        	#K.Y: Gets the position of each geek and the ball, and checks if they have collided
+        	#K.Y: If they have collided, calls the ball.hit() function which reverses the left/right direction of the ball
 		for geek in listOfGeeks:
 			if pygame.Rect.colliderect(ball.getRect(), geek.getRect()):
 				ball.hit()
 
 		# Updating the objects
+        	#K.Y: with the YFacs described above
 		geek1.update(geek1YFac)
 		geek2.update(geek2YFac)
-		point = ball.update()
+		point = ball.update() #K.Y: ball.update() returns 1 or -1 if the ball x position is at or beyond the end of the window (0,900), 0 otherwise
 
 		# -1 -> Geek_1 has scored
 		# +1 -> Geek_2 has scored
@@ -172,13 +182,13 @@ def main():
 		if point == -1:
 			geek1Score += 1
 		elif point == 1:
-			geek2Score += 1
-
+			geek2Score += 1 
+            
 		# Someone has scored
 		# a point and the ball is out of bounds.
 		# So, we reset it's position
 		if point:
-            #K.Y: Calls upon the reset method in the ball class to set ball position to center of screen
+            		#K.Y: Calls upon the reset method in the ball class to set ball position to center of screen
 			ball.reset() 
 
 		# Displaying the objects on the screen
@@ -193,7 +203,9 @@ def main():
 						geek2Score, WIDTH-100, 20, WHITE)
 
 		pygame.display.update()
-		clock.tick(FPS)	
+        
+		clock.tick(FPS)	 #K.Y: Rate at which the while loop runs
+        	#K.Y: Since FPS is defined as 30 at the top of the program, the loop will run 30 times per second
 
 
 if __name__ == "__main__":
