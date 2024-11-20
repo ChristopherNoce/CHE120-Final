@@ -66,54 +66,54 @@ class Striker:
 # Ball class
 
 
-class Ball:
-	def __init__(self, posx, posy, radius, speed, color):
-		self.posx = posx
-		self.posy = posy
-		self.radius = radius
-		self.speed = speed
-		self.color = color
-		self.xFac = 1
-		self.yFac = -1
+class Ball: #K.H A new class "Ball" is being defined.
+	def __init__(self, posx, posy, radius, speed, color): #K.H "__init__" is a method that initializes certain characteristics for the game ball within Pong.
+		self.posx = posx #K.H Assigns the value of posx (position along x-axis) to self.posx which is the x-position characteristic of the ball object. 
+		self.posy = posy #K.H Assigns the value of posy (position along y-axis) to self.posy which is the y-position characteristic of the ball object. 
+		self.radius = radius #K.H Assigns the value of radius (radius of the ball) to self.radius which is the radius characteristic of the ball object.
+		self.speed = speed #K.H Assigns the value of speed (speed of the ball) to self.speed which is the speed characteristic of the ball object.
+		self.color = color #K.H Assigns the value of color (colour of the ball) to self.color which is the colour characteristic of the ball object. 
+		self.xFac = 1 #K.H Assigns the arbitrary value of 1 to self.xFac which is the ball's movement along the x-axis, left or right.
+		self.yFac = -1 #K.H Assigns the arbitrary value of -1 to self.yFac which is the ball's movement along the y-axis, up or down.
 		self.ball = pygame.draw.circle(
-			screen, self.color, (self.posx, self.posy), self.radius)
-		self.firstTime = 1
+			screen, self.color, (self.posx, self.posy), self.radius) #K.H Uses a pygame method to draw the ball on the screen, with a specified colour and radius, and also the ball's initial position along the y-axis and x-axis.
+		self.firstTime = 1 #K.H Assigns the value of 1 to self.firstTime, which is a way of tracking if the ball hit one of the left/right sides of the screen for the first time, which can be seen below.
 
-	def display(self):
+	def display(self): #K.H A function "display" is created to display the game ball. 
 		self.ball = pygame.draw.circle(
-			screen, self.color, (self.posx, self.posy), self.radius)
+			screen, self.color, (self.posx, self.posy), self.radius) #K.H Uses a pygame method to draw the ball on the screen, with a specified colour and radius, and also the ball's initial position along the y-axis and x-axis.
 
-	def update(self):
-		self.posx += self.speed*self.xFac
-		self.posy += self.speed*self.yFac
+	def update(self): #K.H A function "update" is created which seems to update the x and y position of the ball. 
+		self.posx += self.speed*self.xFac #K.H The position of the ball on the x-axis is updated to be relative to the speed of the ball multiplied by the arbitrary factor of the ball along the x-axis.
+		self.posy += self.speed*self.yFac #K.H The position of the ball on the y-axis is updated to be relative to the speed of the ball multiplied by the arbitrary factor of the ball along the y-axis.
 
 		# If the ball hits the top or bottom surfaces, 
 		# then the sign of yFac is changed and 
 		# it results in a reflection
-		if self.posy <= 0 or self.posy >= HEIGHT:
-			self.yFac *= -1
+		if self.posy <= 0 or self.posy >= HEIGHT: #K.H Conditional statement seeing if the y-position of the ball is less than or equal to zero (hits the bottom of the screen) or if the y-position is greater than or equal to the height (hits the top of the screen).
+			self.yFac *= -1 #K.H If the conditional statement is satisfied, the arbitrary factor in the y-direction is multiplied by -1 and effectively flipped so the ball goes in the opposite direction.
 
-		if self.posx <= 0 and self.firstTime:
-			self.firstTime = 0
-			return 1
-		elif self.posx >= WIDTH and self.firstTime:
-			self.firstTime = 0
-			return -1
-		else:
-			return 0
+		if self.posx <= 0 and self.firstTime: #K.H Conditional statement seeing if the x-position of the ball is less than or equal to zero (hits the left side of the screen) and if it is the first time that the ball has done so (any value other than 0 is associated with the boolean True).
+			self.firstTime = 0 #K.H If the conditional statement is satisfied, self.firstTime is assigned the value of 0, which is associated with the boolean False.
+			return 1 #K.H If the conditional statement is satisfied, the value of 1 is also returned for this function.
+		elif self.posx >= WIDTH and self.firstTime: #K.H Conditional statement seeing if the x-position of the ball is greater than or equal to the width (hits the right side of the screen) and if it is the first time that the ball has done so (any value other than 0 is associated with the boolean True).
+			self.firstTime = 0 #K.H If the conditional statement is satisfied, self.firstTime is assigned the value of 0, which is associated with the boolean False.
+			return -1 #K.H If the conditional statement is satisfied, the value of -1 is also returned for this function.
+		else: #K.H Conditional statement that only runs if none of the three conditional statements above are satisfied.
+			return 0 #K.H If the else statement is run, then this line returns the value of 0 to the function.
 
-	def reset(self):
-		self.posx = WIDTH//2
-		self.posy = HEIGHT//2
-		self.xFac *= -1
-		self.firstTime = 1
+	def reset(self): #K.H A function "reset" is created which seems to reset the ball, presumably every time when a player scores.
+		self.posx = WIDTH//2 #K.H The x-position of the ball is reset into the middle of the screen (since the width of the screen divided by 2 is half the screen from left to right).
+		self.posy = HEIGHT//2 #K.H The y-position of the ball is reset into the middle of the screen (since the height of the screen divided by 2 is half the screen from up to down).
+		self.xFac *= -1 #K.H The arbitrary factor in the x-direction is multiplied by the value of -1, meaning that the ball's direction in the x-direction will go the opposite way than before it was reset.
+		self.firstTime = 1 #K.H self.firstTime is assigned the value of 1 again, effectively setting its boolean value to True and resetting it its value before the ball hit the end sides of the screen.
 
 	# Used to reflect the ball along the X-axis
-	def hit(self):
-		self.xFac *= -1
+	def hit(self): #K.H A function "hit" is created which seems to show what happens when the ball is hit by a player's paddle.
+		self.xFac *= -1 #K.H The arbitrary factor in the x-direction is multiplied by the value of -1, which flips the x-direction that the ball is moving in.
 
-	def getRect(self):
-		return self.ball
+	def getRect(self): #K.H A function "getRect" is created.
+		return self.ball #K.H self.ball is returned whenever this function is called.
 
 # Game Manager
 
