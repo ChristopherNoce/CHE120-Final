@@ -22,46 +22,45 @@ FPS = 30 #CN sets the frames per second (FPS) - 30 frames per second means there
 # Striker class
 
 
-class Striker:
+class Striker: #CN defines striker class to represent a game paddel
 		# Take the initial position, dimensions, speed and color of the object
-	def __init__(self, posx, posy, width, height, speed, color):
-		self.posx = posx
-		self.posy = posy
-		self.width = width
-		self.height = height
-		self.speed = speed
-		self.color = color
+	def __init__(self, posx, posy, width, height, speed, color): #CN initializes the properties
+		self.posx = posx #CN x-coordinate of striker
+		self.posy = posy #CN y coordinate of striker
+		self.width = width #CN width of striker
+		self.height = height #CN height of striker
+		self.speed = speed #CN Speed of striker
+		self.color = color #CN colour of striker
 		# Rect that is used to control the position and collision of the object
-		self.geekRect = pygame.Rect(posx, posy, width, height)
+		self.geekRect = pygame.Rect(posx, posy, width, height) #CN Rect object (store and manipulate rectangular area) to define position and collision area
 		# Object that is blit on the screen
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+		self.geek = pygame.draw.rect(screen, self.color, self.geekRect) #CN drwaing the striker on the screen
 
 	# Used to display the object on the screen
-	def display(self):
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+	def display(self): #CN method to display the striker
+		self.geek = pygame.draw.rect(screen, self.color, self.geekRect) #CN drawing the strikers rectangle
 
-	def update(self, yFac):
-		self.posy = self.posy + self.speed*yFac
+	def update(self, yFac): #CN method to update striker's position based on user-inputted movement
+		self.posy = self.posy + self.speed*yFac #CN adjusts y coordinate based on speed and direction
 
 		# Restricting the striker to be below the top surface of the screen
-		if self.posy <= 0:
-			self.posy = 0
+		if self.posy <= 0: #CN sets boundary
+			self.posy = 0 # ensures that they cannot move past the top edge
 		# Restricting the striker to be above the bottom surface of the screen
-		elif self.posy + self.height >= HEIGHT:
-			self.posy = HEIGHT-self.height
+		elif self.posy + self.height >= HEIGHT: #CN sets boundary
+			self.posy = HEIGHT-self.height #CN ensures striker does not pass the bottom
 
 		# Updating the rect with the new values
-		self.geekRect = (self.posx, self.posy, self.width, self.height)
+		self.geekRect = (self.posx, self.posy, self.width, self.height) #CN updates the rectangle with new position
 
-	def displayScore(self, text, score, x, y, color):
-		text = font20.render(text+str(score), True, color)
-		textRect = text.get_rect()
-		textRect.center = (x, y)
+	def displayScore(self, text, score, x, y, color): #CN method to display the score on the screen
+		text = font20.render(text+str(score), True, color) #CN sets score text colour
+		textRect = text.get_rect()  #CN rectangle will go around the text and enclose it
+		textRect.center = (x, y) #CN setting position of the text rectangle
+		screen.blit(text, textRect)#CN displays text on screen
 
-		screen.blit(text, textRect)
-
-	def getRect(self):
-		return self.geekRect
+	def getRect(self): #CN method to retrieve the striker's current rectangle for collision detection
+		return self.geekRect #CN returns the rect object
 
 # Ball class
 
