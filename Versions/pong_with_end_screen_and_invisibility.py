@@ -397,35 +397,22 @@ class Games():
 class Rules():
     def rules():
         running = True
-        text = font15.render("Welcome to Pong!", WHITE, WHITE)
-        text1 = font15.render("1. First player to 10 wins.", WHITE, WHITE)
-        text2 = font15.render("2. The ball will randomly speed up or slow down after each hit.", WHITE, WHITE)
-        text3 = font15.render("3. Once in a while, the ball will become invisible until the center line after a hit.", WHITE, WHITE)
-        text4 = font15.render("4. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", WHITE, WHITE)
-        text5 = font15.render("5. Press 'Q' to exit this screen and start playing!", WHITE, WHITE)
-     
-        rectangle_for_centering_text = text.get_rect()
-        rectangle_for_centering_text.center = (WIDTH // 2, HEIGHT // 2 - 125)
+        rules_list = ["Welcome to Pong!", "1. First player to 10 wins.", "2. The ball will randomly speed up or slow down after each hit.", \
+                      "3. Once in a while, the ball will become invisible until the center line after a hit.", \
+                          "4. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", \
+                              "5. Press 'Q' to exit this screen and start playing!"]
         
-        rectangle_for_centering_text1 = text1.get_rect()
-        rectangle_for_centering_text2 = text2.get_rect()
-        rectangle_for_centering_text3 = text3.get_rect()
-        rectangle_for_centering_text4 = text4.get_rect()
-        rectangle_for_centering_text5 = text5.get_rect()
-        
-        rectangle_for_centering_text1.center = (WIDTH // 2, HEIGHT // 2 - 75)
-        rectangle_for_centering_text2.center = (WIDTH // 2, HEIGHT // 2 - 25)
-        rectangle_for_centering_text3.center = (WIDTH // 2, HEIGHT // 2 + 25)
-        rectangle_for_centering_text4.center = (WIDTH // 2, HEIGHT // 2 + 75)
-        rectangle_for_centering_text5.center = (WIDTH // 2, HEIGHT // 2 + 125)
         while running:
             screen.fill(BLACK)
-            screen.blit(text, rectangle_for_centering_text)
-            screen.blit(text1, rectangle_for_centering_text1)
-            screen.blit(text2, rectangle_for_centering_text2)
-            screen.blit(text3, rectangle_for_centering_text3)
-            screen.blit(text4, rectangle_for_centering_text4)
-            screen.blit(text5, rectangle_for_centering_text5)
+            
+            spacing = -75
+            for rule in rules_list:
+                text = font15.render(rule, WHITE, WHITE)
+                rectangle_for_centering_text = text.get_rect()
+                rectangle_for_centering_text.center = (WIDTH // 2, HEIGHT // 2 + spacing)
+                screen.blit(text, rectangle_for_centering_text)
+                spacing += 50
+                
             for event in pygame.event.get():  # K.Y: checks each event in the list
                 if event.type == pygame.QUIT:
                     running = False  # K.Y: Exits the while loop/game when game window is closed
