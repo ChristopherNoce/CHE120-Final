@@ -117,22 +117,6 @@ class Ball: #K.H A new class "Ball" is being defined.
 	def getRect(self): #K.H A function "getRect" is created.
 		return self.ball #K.H self.ball is returned whenever this function is called.
 
-# Game Manager
-
-def main():
-    
-    mainmenu = pygame_menu.Menu('Welcome', WIDTH, HEIGHT, theme=themes.THEME_DARK)
-    
-    mainmenu.add.text_input('Name 1: ', default='username', maxchar=20)
-    mainmenu.add.text_input('Name 2: ', default='username', maxchar=20)
-    
-    #K.Y: Add comments later
-    mainmenu.add.button('Play', Games.game)
-    mainmenu.add.button('Modes', Games.game1)
-    mainmenu.add.button('Quit', pygame_menu.events.EXIT)
-    
-    mainmenu.mainloop(screen)
-
 class Games():
     def game():
     	running = True #K.Y: Initializing the running variable to True so that the while loop below runs
@@ -298,7 +282,21 @@ class Games():
     		pygame.display.update()
             
     		clock.tick(FPS)	 
-            	
+
+#K.Y: Game manager
+def main():
+    
+    mainmenu = pygame_menu.Menu('Welcome', WIDTH, HEIGHT, theme=themes.THEME_DARK)
+    
+    mainmenu.add.text_input('Name 1: ', default='username', maxchar=20)
+    mainmenu.add.text_input('Name 2: ', default='username', maxchar=20)
+    
+    #K.Y: Add comments later
+    mainmenu.add.button('Play', Games.game)
+    mainmenu.add.button('Modes', Games.game1)
+    mainmenu.add.button('Quit', pygame_menu.events.EXIT)
+    
+    mainmenu.mainloop(screen)
 
 if __name__ == "__main__":
 	main()
