@@ -132,7 +132,7 @@ class Games():
         running = True  # K.Y: Initializing the running variable to True so that the while loop below runs
 
         background = pygame.image.load('pong_background_resized.png')  # CN loading background image
-        background_music = pygame.mixer.Sound('background_music.mp3')
+        background_music = pygame.mixer.Sound('background_music.mp3') # CN imports the music file "background_music.mp3" which will be used for the game
 
     # Defining the objects
     # K.Y: x, y, width, height, speed, colour
@@ -149,8 +149,8 @@ class Games():
         geek1YFac, geek2YFac = 0, 0  # K.Y: YFac is explained in the following comments
 
         while running:  # K.Y: While the game is running/tab is open
-            screen.blit(background, (0, 0))  # CN renders the background image
-            background_music.play() #plays music
+            screen.blit(background, (0, 0))  # CN renders the background image while the game is running
+            background_music.play() #plays music while the game is running
 
             # Event handling
         # K.Y: pygame.event.get() creates a list of events (mouse movements, keyboard inputs, etc)
