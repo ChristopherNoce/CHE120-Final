@@ -219,10 +219,10 @@ class Games():
             elif point == 1:
                 geek2Score += 1
                 
-            if geek1Score == 1:
+            if geek1Score == 10:
                 background_music.stop()
                 Games.end_screen1()
-            elif geek2Score == 1:
+            elif geek2Score == 10:
                 background_music.stop()
                 Games.end_screen2()
 
