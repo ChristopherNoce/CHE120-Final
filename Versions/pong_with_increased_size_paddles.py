@@ -102,7 +102,7 @@ class Ball:  # K.H A new class "Ball" is being defined.
         self.posx += self.speed * self.xFac  # K.H The position of the ball on the x-axis is updated to be relative to the speed of the ball multiplied by the arbitrary factor of the ball along the x-axis.
         self.posy += self.speed * self.yFac  # K.H The position of the ball on the y-axis is updated to be relative to the speed of the ball multiplied by the arbitrary factor of the ball along the y-axis.
         if (self.posx >= WIDTH // 2 and self.xFac > 0) or (self.posx <= WIDTH // 2 and self.xFac < 0):
-            self.color = WHITE
+            self.color = GREEN
 
         # If the ball hits the top or bottom surfaces,
         # then the sign of yFac is changed and
@@ -125,7 +125,7 @@ class Ball:  # K.H A new class "Ball" is being defined.
         self.posy = HEIGHT // 2  # K.H The y-position of the ball is reset into the middle of the screen (since the height of the screen divided by 2 is half the screen from up to down).
         self.xFac = random.randrange(-1, 2, 2)  # K.H The arbitrary factor in the x-direction is multiplied by the value of -1, meaning that the ball's direction in the x-direction will go the opposite way than before it was reset.
         self.firstTime = 1  # K.H self.firstTime is assigned the value of 1 again, effectively setting its boolean value to True and resetting it its value before the ball hit the end sides of the screen.
-        self.color = WHITE
+        self.color = GREEN
 
     # Used to reflect the ball along the X-axis
     def hit(self):  # K.H A function "hit" is created which seems to show what happens when the ball is hit by a player's paddle.
@@ -154,6 +154,7 @@ class Games():
         
         background = pygame.image.load('pong_background_resized.png')  # CN loading background image
         background_music = pygame.mixer.Sound('background_music.mp3')
+        end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3')
 
     # Defining the objects
     # K.Y: x, y, width, height, speed, colour
@@ -230,9 +231,11 @@ class Games():
 
             if geek1Score == 10:
                 background_music.stop()
+                end_music.play()
                 Games.end_screen1()
             elif geek2Score == 10:
                 background_music.stop()
+                end_music.play()
                 Games.end_screen2()
 
 
@@ -402,7 +405,7 @@ class Games():
             clock.tick(FPS)
 
         # K.Y: Game manager
-        
+
 class Rules():
     def rules():
         running = True
