@@ -10,7 +10,7 @@ pygame.init()  # C.N - this initializes the pygame modules, including font, soun
 
 # Font that is used to render the text
 font20 = pygame.font.Font('freesansbold.ttf',
-                          20)  # C.N - this sets the font and style that will be used for the text in the gam
+                          20)  # C.N - this sets the font and style that will be used for the text in the game
 font15 = pygame.font.Font('freesansbold.ttf',
                           15)
 font25 = pygame.font.Font('freesansbold.ttf',
@@ -18,13 +18,13 @@ font25 = pygame.font.Font('freesansbold.ttf',
 
 # RGB values of standard colors
 BLACK = (0, 0, 0)  # CN RBG value for black
-WHITE = (255, 255, 255)  # CN RGB vakue for white
+WHITE = (255, 255, 255)  # CN RGB value for white
 GREEN = (0, 255, 0)  # CN RGB value that creates the green in game
 
 # Basic parameters of the screen
 WIDTH, HEIGHT = 900, 600  # CN dimensions of the game window
 screen = pygame.display.set_mode((WIDTH, HEIGHT))  # CN Creates the game window using the dimensions listed abvoe
-pygame.display.set_caption("Pong")  # CN title of window = "Pong"
+pygame.display.set_caption("Pong")  # CN title of window is "Pong"
 
 clock = pygame.time.Clock()  # CN creates clock object to control the frame rate
 FPS = 30  # CN sets the frames per second (FPS) - 30 frames per second means there are 30 still images (frames) displayed in a single second of animation. Higher fps = smoother and more fluid animations.
@@ -46,11 +46,11 @@ class Striker:  # CN defines striker class to represent a game paddel
         self.geekRect = pygame.Rect(posx, posy, width,
                                     height)  # CN Rect object (store and manipulate rectangular area) to define position and collision area
         # Object that is blit on the screen
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)  # CN drwaing the striker on the screen
+        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)  # CN drawing the striker on the screen
 
     # Used to display the object on the screen
     def display(self):  # CN method to display the striker
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)  # CN drawing the strikers rectangle
+        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)  # CN drawing the striker's rectangle
 
     def update(self, yFac):  # CN method to update striker's position based on user-inputted movement
         self.posy = self.posy + self.speed * yFac  # CN adjusts y coordinate based on speed and direction
@@ -152,9 +152,9 @@ class Games():
     def game():
         running = True  # K.Y: Initializing the running variable to True so that the while loop below runs
         
-        background = pygame.image.load('pong_background_resized.png')  # CN loading background image
-        background_music = pygame.mixer.Sound('background_music.mp3')
-        end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3')
+        background = pygame.image.load('pong_background_resized.png')  # CN loading background image, shows only when game runs
+        background_music = pygame.mixer.Sound('background_music.mp3') #CN loading in background music, plays only when game runs
+        end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3') #CN celebratory music at the end of each game
 
     # Defining the objects
     # K.Y: x, y, width, height, speed, colour
@@ -172,7 +172,7 @@ class Games():
 
         while running:  # K.Y: While the game is running/tab is open
             screen.blit(background, (0, 0))  # CN renders the background image
-            background_music.play() #plays music
+            background_music.play() #plays music as game starts
 
             # Event handling
         # K.Y: pygame.event.get() creates a list of events (mouse movements, keyboard inputs, etc)
@@ -221,21 +221,21 @@ class Games():
             elif point == 1:
                 geek2Score += 1
 
-            if geek1Score == 9:
+            if geek1Score == 9: #CN 1 point from winning
                 geek2.height = 200  #CN increases the height of geek2's paddle (makes the game easier as they are 1 point from losing
-                geek2.geekRect = pygame.Rect(geek2.posx, geek2.posy, geek2.width, geek2.height)
+                geek2.geekRect = pygame.Rect(geek2.posx, geek2.posy, geek2.width, geek2.height) #CN collisions
             elif geek2Score == 9:
                 geek1.height = 200  #CN increases the height of geek1's paddle
-                geek1.geekRect = pygame.Rect(geek1.posx, geek1.posy, geek1.width, geek1.height)
+                geek1.geekRect = pygame.Rect(geek1.posx, geek1.posy, geek1.width, geek1.height) #CN collisions
 
 
             if geek1Score == 10:
-                background_music.stop()
-                end_music.play()
+                background_music.stop() 
+                end_music.play() #CN end music plays when the game is over
                 Games.end_screen1()
             elif geek2Score == 10:
                 background_music.stop()
-                end_music.play()
+                end_music.play() #CN end music plays when the game is over
                 Games.end_screen2()
 
 
