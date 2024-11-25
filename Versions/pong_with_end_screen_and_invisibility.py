@@ -405,7 +405,7 @@ class Rules():
         while running:
             screen.fill(BLACK)
             
-            spacing = -75
+            spacing = -(HEIGHT//2)//(0.5*len(rules_list))
             for rule in rules_list:
                 text = font15.render(rule, WHITE, WHITE)
                 rectangle_for_centering_text = text.get_rect()
