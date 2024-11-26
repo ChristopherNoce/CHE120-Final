@@ -424,15 +424,22 @@ class Rules():
             clock.tick(FPS)
 
 
+name1 = ['username','username']
+def getNames1(name):
+    name1[0] = name
+
+def getNames2(name):
+    name1[1] = name
+
 def main():
     mainmenu = pygame_menu.Menu('Welcome', WIDTH, HEIGHT, theme=themes.THEME_DARK)
 
-    mainmenu.add.text_input('Name 1: ', default='username', maxchar=20)
-    mainmenu.add.text_input('Name 2: ', default='username', maxchar=20)
+    mainmenu.add.text_input('Name 1: ', default=name1[0], maxchar=20, onchange = getNames1)
+    mainmenu.add.text_input('Name 2: ', default=name1[1], maxchar=20, onchange = getNames2)
 
     # K.Y: Add comments later
-    mainmenu.add.button('Play', Games.game)
-    mainmenu.add.button('Modes', Games.game1)
+    mainmenu.add.button('Mode 1', Games.game)
+    mainmenu.add.button('Mode 2', Games.game1)
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
     mainmenu.add.button("Rules", Rules.rules)
 
