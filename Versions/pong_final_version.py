@@ -321,8 +321,9 @@ class Rules():
         running = True
         rules_list = ["Welcome to Pong!", "1. First player to 10 wins.", "2. The ball will randomly speed up or slow down after each hit.", \
                       "3. Once in a while, the ball will become invisible until the center line after a hit.", \
-                          "4. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", \
-                              "5. Press 'Q' to exit this screen and start playing!"]
+                          "4. When a player is one point from losing, their paddle doubles in size.", \
+                      "5. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", \
+                              "6. Press 'Q' to exit this screen and start playing!"]
         
         while running:
             screen.fill(BLACK)
