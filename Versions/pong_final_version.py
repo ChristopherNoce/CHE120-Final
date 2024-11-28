@@ -3,6 +3,7 @@
 import pygame  
 import random
 import pygame_menu
+from pygame_menu import themes
 
 pygame.init()  
 
