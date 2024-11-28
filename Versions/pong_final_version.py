@@ -151,6 +151,7 @@ class Games():
         running = True  
         
         background = pygame.image.load('pong_background_resized.png')  
+        background = pygame.transform.scale(background, (WIDTH, HEIGHT))
         background_music = pygame.mixer.Sound('background_music.mp3')
         end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3')
 
