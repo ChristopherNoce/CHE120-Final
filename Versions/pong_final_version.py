@@ -240,9 +240,9 @@ class Games():
             ball.display()
 
         # Displaying the scores of the players
-            geek1.displayScore(name1[0] + ": ",
+            geek1.displayScore(names[0] + ": ",
                             geek1Score, 100, 20, WHITE)
-            geek2.displayScore(name1[1] + ": ",
+            geek2.displayScore(names[1] + ": ",
                             geek2Score, WIDTH - 100, 20, WHITE)
 
             pygame.display.update()
@@ -346,18 +346,18 @@ class Rules():
             clock.tick(FPS)
 
 
-name1 = ['username','username']
-def getNames1(name):
-    name1[0] = name
+names = ['username','username']
+def getName1(name):
+    names[0] = name
 
-def getNames2(name):
-    name1[1] = name
+def getName2(name):
+    names[1] = name
 
 def main():
     mainmenu = pygame_menu.Menu('Welcome', WIDTH, HEIGHT, theme=themes.THEME_DARK)
 
-    mainmenu.add.text_input('Name 1: ', default=name1[0], maxchar=20, onchange = getNames1)
-    mainmenu.add.text_input('Name 2: ', default=name1[1], maxchar=20, onchange = getNames2)
+    mainmenu.add.text_input('Name 1: ', default=names[0], maxchar=20, onchange = getName1)
+    mainmenu.add.text_input('Name 2: ', default=names[1], maxchar=20, onchange = getName2)
 
     # K.Y: Add comments later
     mainmenu.add.button('Play', Games.game)
