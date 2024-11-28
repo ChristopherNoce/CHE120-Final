@@ -23,7 +23,7 @@ GREEN = (0, 255, 0)
 # Basic parameters of the screen
 WIDTH, HEIGHT = 900, 600 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))  
-pygame.display.set_caption("Pong")  
+pygame.display.set_caption("Paddle Wars")  
 
 clock = pygame.time.Clock()  
 FPS = 30  
@@ -320,7 +320,7 @@ class Games():
 class Rules():
     def rules():
         running = True
-        rules_list = ["Welcome to Pong!", "1. First player to 10 wins.", "2. The ball will randomly speed up or slow down after each hit.", \
+        rules_list = ["Welcome to Paddle Wars!", "1. First player to 10 wins.", "2. The ball will randomly speed up or slow down after each hit.", \
                       "3. Once in a while, the ball will become invisible until the center line after a hit.", \
                           "4. When a player is one point from losing, their paddle doubles in size.", \
                       "5. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", \
@@ -356,7 +356,7 @@ def getName2(name):
     names[1] = name
 
 def main():
-    mainmenu = pygame_menu.Menu('Welcome', WIDTH, HEIGHT, theme=themes.THEME_DARK)
+    mainmenu = pygame_menu.Menu('Paddle Wars', WIDTH, HEIGHT, theme=themes.THEME_DARK)
 
     mainmenu.add.text_input('Name 1: ', default=names[0], maxchar=20, onchange = getName1)
     mainmenu.add.text_input('Name 2: ', default=names[1], maxchar=20, onchange = getName2)
