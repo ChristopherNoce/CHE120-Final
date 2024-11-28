@@ -173,6 +173,7 @@ class Games():
             for event in pygame.event.get():  
                 if event.type == pygame.QUIT:
                     running = False  
+                    background_music.stop()
                 if event.type == pygame.KEYDOWN:  
               
                     if event.key == pygame.K_UP:
