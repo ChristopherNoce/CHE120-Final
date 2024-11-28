@@ -1,3 +1,10 @@
+# https://www.geeksforgeeks.org/create-a-pong-game-in-python-pygame/ - Thanks to GeeksforGeeks for providing us with the base source code of our project.
+# https://www.freepik.com/premium-vector/you-win-lettering-pop-art-text-banner_7255673.htm - "You win" image at the end of the game.
+# https://pngtree.com/freepng/game-assets-comic-speech-bubble-cartoon-depicting-loss-vector_9911993.html - "You lose" image at the end of the game.
+# https://drive.google.com/file/d/1vgxEQUD5gnN6RGMtHaGP-n91dFnx6diV/view - Background music for our project.
+# https://img-aaralyn.blogspot.com/2021/05/cool-pong-background.html - Background image for the game in our project.
+# https://www.youtube.com/watch?v=1ARb7r0yY9k&ab_channel=Khoa - Celebration sound effect for when someone wins. 
+# https://www.geeksforgeeks.org/how-to-rotate-and-scale-images-using-pygame/ - This helped us learn how to resize images. 
 
 # Kevin Yang K.Y, Christopher Noce C.N, Kevin Huang K.H
 import pygame  
