@@ -5,6 +5,7 @@
 # https://img-aaralyn.blogspot.com/2021/05/cool-pong-background.html - Background image for the game in our project.
 # https://www.youtube.com/watch?v=1ARb7r0yY9k&ab_channel=Khoa - Celebration sound effect for when someone wins. 
 # https://www.geeksforgeeks.org/how-to-rotate-and-scale-images-using-pygame/ - This helped us learn how to resize images. 
+# https://pygame-menu.readthedocs.io/en/latest/ - This helped us learn how to implement our menu screen.
 
 # Kevin Yang K.Y, Christopher Noce C.N, Kevin Huang K.H
 import pygame  
