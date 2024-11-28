@@ -3,8 +3,6 @@
 import pygame  
 import random
 import pygame_menu
-from pygame_menu import themes
-from spyder.utils.color_system import Green
 
 pygame.init()  
 
@@ -102,7 +100,7 @@ class Ball:
         self.posx += self.speed * self.xFac 
         self.posy += self.speed * self.yFac  
         if (self.posx >= WIDTH // 2 and self.xFac > 0) or (self.posx <= WIDTH // 2 and self.xFac < 0):
-            self.color = WHITE
+            self.color = GREEN
 
         # If the ball hits the top or bottom surfaces,
         # then the sign of yFac is changed and
@@ -125,7 +123,7 @@ class Ball:
         self.posy = HEIGHT // 2  
         self.xFac = random.randrange(-1, 2, 2) 
         self.firstTime = 1  
-        self.color = WHITE
+        self.color = GREEN
 
     # Used to reflect the ball along the X-axis
     def hit(self):  
@@ -159,7 +157,7 @@ class Games():
         geek1 = Striker(20, 0, 10, 100, 10, GREEN)
         geek2 = Striker(WIDTH - 30, 0, 10, 100, 10, GREEN)
 
-        ball = Ball(WIDTH // 2, HEIGHT // 2, 7, 7, WHITE)
+        ball = Ball(WIDTH // 2, HEIGHT // 2, 7, 7, GREEN)
 
         listOfGeeks = [geek1, geek2]
 
