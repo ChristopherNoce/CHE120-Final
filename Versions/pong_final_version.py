@@ -240,9 +240,9 @@ class Games():
             ball.display()
 
         # Displaying the scores of the players
-            geek1.displayScore(name1[0], ": ",
+            geek1.displayScore(name1[0] + ": ",
                             geek1Score, 100, 20, WHITE)
-            geek2.displayScore(name1[1], ": ",
+            geek2.displayScore(name1[1] + ": ",
                             geek2Score, WIDTH - 100, 20, WHITE)
 
             pygame.display.update()
@@ -315,85 +315,6 @@ class Games():
             pygame.display.update()
 
             clock.tick(FPS)
-
-
-    def game1():
-        running = True
-        background = pygame.image.load('pong_background_resized.png')
-
-    # Defining the objects
-        geek1 = Striker(20, 0, 10, 250, 10, WHITE)
-        geek2 = Striker(WIDTH - 30, 0, 10, 100, 10, WHITE)
-        ball = Ball(WIDTH // 2, HEIGHT // 2, 7, 7, WHITE)
-
-        listOfGeeks = [geek1, geek2]
-
-    # Initial parameters of the players
-        geek1Score, geek2Score = 0, 0
-        geek1YFac, geek2YFac = 0, 0
-
-        while running:
-            screen.blit(background, (0,0))
-
-        # Event handling
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
-                        geek2YFac = -1
-                    if event.key == pygame.K_DOWN:
-                        geek2YFac = 1
-                    if event.key == pygame.K_w:
-                        geek1YFac = -1
-                    if event.key == pygame.K_s:
-                        geek1YFac = 1
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                        geek2YFac = 0
-                    if event.key == pygame.K_w or event.key == pygame.K_s:
-                        geek1YFac = 0
-
-            # Collision detection
-                for geek in listOfGeeks:
-                    if pygame.Rect.colliderect(ball.getRect(), geek.getRect()):
-                        ball.hit()
-
-            # Updating the objects
-            geek1.update(geek1YFac)
-            geek2.update(geek2YFac)
-            point = ball.update()
-
-            # -1 -> Geek_1 has scored
-            # +1 -> Geek_2 has scored
-            # 0 -> None of them scored
-            if point == -1:
-                geek1Score += 1
-            elif point == 1:
-                geek2Score += 1
-
-            # Someone has scored
-            # a point and the ball is out of bounds.
-            # So, we reset it's position
-            if point:
-                ball.reset()
-
-            # Displaying the objects on the screen
-            geek1.display()
-            geek2.display()
-            ball.display()
-
-            # Displaying the scores of the players
-            geek1.displayScore("Geek_1 : ",
-                               geek1Score, 100, 20, WHITE)
-            geek2.displayScore("Geek_2 : ",
-                               geek2Score, WIDTH - 100, 20, WHITE)
-
-            pygame.display.update()
-
-            clock.tick(FPS)
-
-        # K.Y: Game manager
         
 class Rules():
     def rules():
@@ -439,8 +360,7 @@ def main():
     mainmenu.add.text_input('Name 2: ', default=name1[1], maxchar=20, onchange = getNames2)
 
     # K.Y: Add comments later
-    mainmenu.add.button('Mode 1', Games.game)
-    mainmenu.add.button('Mode 2', Games.game1)
+    mainmenu.add.button('Play', Games.game)
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
     mainmenu.add.button("Rules", Rules.rules)
 
