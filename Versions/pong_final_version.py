@@ -36,6 +36,11 @@ pygame.display.set_caption("Paddle Wars")
 clock = pygame.time.Clock()  
 FPS = 30  
 
+# Game visuals and audio
+background_image = pygame.image.load('pong_background_resized.png')  
+background = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+background_music = pygame.mixer.Sound('background_music.mp3')
+end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3')
 
 # Striker class
 
@@ -157,11 +162,6 @@ class Ball:
 class Games():
     def game():
         running = True  
-        
-        background = pygame.image.load('pong_background_resized.png')  
-        background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-        background_music = pygame.mixer.Sound('background_music.mp3')
-        end_music = pygame.mixer.Sound('Celebration Sound Effect.mp3')
 
     # Defining the objects
         geek1 = Striker(20, 0, 10, 100, 10, GREEN)
@@ -185,7 +185,8 @@ class Games():
                     running = False  
                     background_music.stop()
                 if event.type == pygame.KEYDOWN:  
-              
+                    if event.key == pygame.K_p:
+                        Games.pause()
                     if event.key == pygame.K_UP:
                         geek2YFac = -1
                     if event.key == pygame.K_DOWN:
@@ -258,7 +259,30 @@ class Games():
 
             clock.tick(FPS)  
 
-    
+    def pause():
+        background_music.stop()
+        freeze_screen = True
+        
+        play_again = font25.render("Game paused, press P to resume", WHITE, WHITE)
+        rectangle_for_centering_question = play_again.get_rect()
+        rectangle_for_centering_question.center = (WIDTH // 2, HEIGHT // 2)
+        
+        while freeze_screen:
+   
+            screen.blit(play_again, rectangle_for_centering_question)
+            for event in pygame.event.get():  #checks each event in the list
+                if event.type == pygame.QUIT:
+                    freeze_screen = False 
+                    main() # Exits the while loop/game when game window is closed
+                if event.type == pygame.KEYDOWN: 
+                    if event.key == pygame.K_p:
+                        freeze_screen = False
+                        
+
+            pygame.display.update()
+
+            clock.tick(FPS)
+  
     def end_screen1(): #Player 1 wins
         freeze_screen = True
         x_size = 200
