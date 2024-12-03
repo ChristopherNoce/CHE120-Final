@@ -114,7 +114,7 @@ class Ball:
         self.posx += self.speed * self.xFac 
         self.posy += self.speed * self.yFac  
         if (self.posx >= WIDTH // 2 and self.xFac > 0) or (self.posx <= WIDTH // 2 and self.xFac < 0):
-            self.color = GREEN
+            self.color = GREEN #changed ball colour to green
 
         # If the ball hits the top or bottom surfaces,
         # then the sign of yFac is changed and
@@ -137,17 +137,17 @@ class Ball:
         self.posy = HEIGHT // 2  
         self.xFac = random.randrange(-1, 2, 2) 
         self.firstTime = 1  
-        self.color = GREEN
+        self.color = GREEN #ball colour is changed to green
 
     # Used to reflect the ball along the X-axis
     def hit(self):  
         self.randFac = random.randint(1, 3)
         self.invisibility = random.randint(1, 4)
         if self.xFac > 0:
-            self.xFac = -self.randFac
+            self.xFac = -self.randFac #randomizes the speed of the ball (in the correct direction) by a factor of 1 to 3
             
-            if self.invisibility == 1:
-                self.color = BLACK
+            if self.invisibility == 1: # %25 chance of happening
+                self.color = BLACK #the colour of the ball changes to match the background
                 
         elif self.xFac < 0:
             self.xFac = self.randFac
@@ -175,6 +175,7 @@ class Games():
         geek1Score, geek2Score = 0, 0
         geek1YFac, geek2YFac = 0, 0  
 
+        #background image and image are displayed and played while the game is happening
         while running:  
             screen.blit(background, (0, 0))  
             background_music.play() 
@@ -186,7 +187,7 @@ class Games():
                     background_music.stop()
                 if event.type == pygame.KEYDOWN:  
                     if event.key == pygame.K_p:
-                        Games.pause()
+                        Games.pause() #pauses the game screen
                     if event.key == pygame.K_UP:
                         geek2YFac = -1
                     if event.key == pygame.K_DOWN:
@@ -228,10 +229,13 @@ class Games():
                 geek1.height = 200  # increases the height of geek1's paddle
                 geek1.geekRect = pygame.Rect(geek1.posx, geek1.posy, geek1.width, geek1.height) # collisions
                 
+                
+            # stop game music and play celebratory music and display an end screen if player 1 reaches 10 points and wins
             if geek1Score == 10:
                 background_music.stop()
                 end_music.play()
                 Games.end_screen1()
+            #stop game music and play celebratory music and display an end screen if player 2 reaches 10 points and wins
             elif geek2Score == 10:
                 background_music.stop()
                 end_music.play()
@@ -258,7 +262,8 @@ class Games():
             pygame.display.update()
 
             clock.tick(FPS)  
-
+            
+    #pause game function
     def pause():
         background_music.stop()
         freeze_screen = True
@@ -283,7 +288,7 @@ class Games():
 
             clock.tick(FPS)
   
-    def end_screen1(): #Player 1 wins
+    def end_screen1(): #function of end screen if Player 1 wins
         freeze_screen = True
         x_size = 200
         y_size = 200
@@ -316,7 +321,7 @@ class Games():
 
             clock.tick(FPS)
                     
-    def end_screen2(): #Player 2 wins
+    def end_screen2(): #function of end screen if Player 2 wins
         freeze_screen = True
         x_size = 200
         y_size = 200
@@ -350,18 +355,18 @@ class Games():
             clock.tick(FPS)
         
 class Rules():
-    def rules():
+    def rules(): #function for the display of game rules as a result of clicking the 'Rules' button on the main menu
         running = True
         rules_list = ["Welcome to Paddle Wars!", "1. First player to 10 wins.", "2. The ball will randomly speed up or slow down after each hit.", \
                       "3. Once in a while, the ball will become invisible until the center line after a hit.", \
                           "4. When a player is one point from losing, their paddle doubles in size.", \
                       "5. Player 1 uses 'W' and 'S' keys to control their paddle, and Player 2 uses the up/down arrow keys.", \
-                              "6. Press 'Q' to exit this screen and start playing!"]
+                              "6. Press 'P' within the game to pause the game screen, then press 'P' again to resume.", "7. Press 'Q' to exit this screen and start playing!"]
         
         while running:
             screen.fill(BLACK)
             
-            spacing = -(HEIGHT//2)//(0.5*len(rules_list))
+            spacing = -175
             for rule in rules_list:
                 text = font15.render(rule, WHITE, WHITE)
                 rectangle_for_centering_text = text.get_rect()
@@ -379,7 +384,7 @@ class Rules():
 
             clock.tick(FPS)
 
-
+#allows players to input their names in the main menu for display on the game screen
 names = ['username','username']
 def getName1(name):
     names[0] = name
